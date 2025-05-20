@@ -1,4 +1,4 @@
-package com.medical.servlet;
+Dpackage com.medical.servlet;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
