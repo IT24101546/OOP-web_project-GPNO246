@@ -1,0 +1,6 @@
+id,appointmentId,doctorName,date,amount,status,patientEmail,cardInfo
+PAY001,APT001,Dr. John Smith,2023-11-15,150.00,Pending,john.doe@example.com,
+PAY002,APT002,Dr. Sarah Johnson,2023-11-20,120.00,Pending,jane.smith@example.com,
+PAY003,APT003,Dr. Michael Lee,2023-12-05,180.00,Pending,mary.jones@example.com,
+PAY004,APT004,Dr. Emily Chen,2023-10-10,135.00,Paid,john.doe@example.com,Credit Card (xxxx-xxxx-xxxx-1234)
+PAY005,APT005,Dr. Robert Wilson,2023-09-25,200.00,Paid,jane.smith@example.com,Credit Card (xxxx-xxxx-xxxx-5678) 
