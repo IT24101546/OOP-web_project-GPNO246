@@ -1,0 +1,36 @@
+--Excercise 2a
+alter table MovieStar
+add rank int default 0;
+
+create procedure UpdateMovieStarRanks as
+begin
+    update MovieStar
+    set rank = (
+        select count(*)
+        from StarsIn
+        where StarsIn.starname = MovieStar.name
+        and LTRIM(RTRIM(StarsIn.role)) = 'lead'
+    );
+    
+    print 'Movie star ranks updated successfully.';
+end;
+
+exec UpdateMovieStarRanks;
+go
+
+
+--Excercise 2b
+create trigger trg_UpdateRankOnNewMovie
+on StarsIn
+after insert
+as
+begin    
+    update MovieStar
+    set rank = rank + 1
+    from MovieStar ms
+    inner join inserted i on ms.name = i.starname
+    where LTRIM(RTRIM(i.role)) = 'lead';
+    
+    print 'Movie star rank updated after new movie insertion.';
+end;
+go

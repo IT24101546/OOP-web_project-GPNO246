@@ -1,0 +1,53 @@
+--(a)--
+create view showDetails_it24101546(Title,Year,Director_Name, NoOfTheaters)
+AS
+select m.title, m.year, m.DirectorName, count(s.theaterName)
+from Show s, Movie m
+where s.movieTitle = m.title
+group by m.title, m.year, m.DirectorName
+
+select * from showDetails_it24101546
+
+drop view showDetails_it24101546
+
+--(b)--
+create view showDetails_it24101546(Theater, City, Total_NoOf_movies)
+as
+select t.theaterName, t.city, count(s.movieTitle)
+from Theater t, Show s
+where t.theaterName = s.theaterName
+group by t.theaterName, t.city
+
+select * from showDetails_it24101546
+
+drop view showDetails_it24101546
+
+--(c)--
+create function movieActed_it24101546(@starName varchar(25)) returns int
+as 
+begin
+declare @numStaredIn int
+select @numStaredIn = count(s.movieTitle)
+from StarsIn s
+where s.starname = @starName
+return @numStaredIn
+end
+
+declare @num_movies int
+exec @num_movies = movieActed_it24101546 'Tom Holland'
+print @num_movies
+
+--(d)--
+create function NumberOfSpectators_it24101546(@TheaterName varchar(20)) returns int
+as
+begin
+declare @num_spectators int 
+select @num_spectators = sum(s.spectators)
+from Show s
+where s.theaterName = @TheaterName
+return @num_spectators
+end
+
+declare @totSpectators int
+exec @totSpectators = NumberOfSpectators_it24101546 'Nitehawk'
+print @totSpectators
